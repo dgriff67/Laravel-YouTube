@@ -17,7 +17,7 @@ class CreateFavouritesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('title');
-            $table-string('videoid');
+            $table->string('videoid');
             $table->integer('user_id');
         });
     }
