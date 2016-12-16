@@ -13,7 +13,9 @@ class AddUserColumnToTagsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('tags', function ($table) {
+            $table->integer('user_id');
+        });
     }
 
     /**
@@ -23,6 +25,8 @@ class AddUserColumnToTagsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('tags', function ($table) {
+            $table->dropColumn('user_id');
+        });
     }
 }
