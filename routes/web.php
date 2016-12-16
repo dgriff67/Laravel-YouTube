@@ -14,7 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('favourites', function () {
-    return App\Favourite::all();
+Route::group(['prefix' => 'api'], function(){
+    Route::get('favourites', ['as' => 'favourites', function () {
+        return App\Favourite::all();
+    }]);
 });
