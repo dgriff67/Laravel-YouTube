@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@home');
+
 Route::group(['prefix' => 'api'], function(){
     Route::get('favourites', ['as' => 'favourites', function () {
         return App\Favourite::all();
