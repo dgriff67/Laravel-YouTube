@@ -23,7 +23,7 @@ class FavouritesController extends Controller
      */
     public function create()
     {
-        //
+        return view('favourites.create');
     }
 
     /**
