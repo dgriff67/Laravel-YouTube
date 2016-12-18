@@ -23,7 +23,7 @@ class PagesController extends Controller
 
     public function create()
     {
-        return view('create');
+        return view('favourites.create');
     }
 
 }
