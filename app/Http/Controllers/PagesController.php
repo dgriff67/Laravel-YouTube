@@ -10,4 +10,14 @@ class PagesController extends Controller
     {
         return view('welcome');
     }
+
+    public function favourites()
+    {
+        return view('favourites');
+    }
+
+    public function tags()
+    {
+        return view('tags');
+    }
 }
