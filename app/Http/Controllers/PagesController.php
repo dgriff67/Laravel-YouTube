@@ -20,4 +20,10 @@ class PagesController extends Controller
     {
         return view('tags');
     }
+
+    public function create()
+    {
+        return view('create');
+    }
+
 }
