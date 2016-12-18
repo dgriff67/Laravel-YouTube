@@ -14,7 +14,7 @@
 Route::get('/', 'PagesController@home');
 Route::get('/favourites', 'PagesController@favourites');
 Route::get('/tags', 'PagesController@tags');
-Route::get('/create', 'PagesController@create');
+Route::get('/create', 'FavouritesController@create');
 
 
 Route::group(['prefix' => 'api'], function(){
