@@ -9,7 +9,7 @@
                     <p> {!! $favourite->videoid !!} </p>
                     <p> {!! $favourite->user_id !!} </p>
                 </div>
-                <a href="#" class="btn btn-info">Edit</a>
+                <a href="{!! action('FavouritesController@edit', $favourite->id) !!}" class="btn btn-info">Edit</a>
                 <a href="#" class="btn btn-info">Delete</a>
             </div>
     </div>
