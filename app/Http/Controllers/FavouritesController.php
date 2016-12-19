@@ -68,7 +68,8 @@ class FavouritesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ticket = Ticket::whereId($id)->firstOrFail();
+        return view('favourites.edit', compact('favourite'));
     }
 
     /**
