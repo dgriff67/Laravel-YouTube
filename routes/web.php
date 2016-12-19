@@ -14,6 +14,7 @@
 Route::get('/', 'PagesController@home');
 Route::get('/favourites', 'FavouritesController@index');
 Route::get('/favourite/{id?}', 'FavouritesController@show');
+Route::get('/favourite/{id?}/edit', 'FavouritesController@edit');
 Route::get('/tags', 'PagesController@tags');
 Route::get('/create', 'FavouritesController@create');
 Route::post('/create', 'FavouritesController@store');
