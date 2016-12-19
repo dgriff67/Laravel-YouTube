@@ -19,11 +19,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($tickets as $ticket)
+                            @foreach($favourites as $favourite)
                                 <tr>
                                     <td>{!! $favourite->id !!} </td>
-                                    <td>{!! $favourite->title !!}</td>
-                                    <td>{!! $favourite-videoid !!}</td>
+                                    <td>
+                                        <a href="{!! action('FavouritesController@show', $favourite->id) !!}">{!! $favourite->title !!} </a>
+                                    </td>
+                                    <td>{!! $favourite->videoid !!}</td>
                                 </tr>
                             @endforeach
                         </tbody>
