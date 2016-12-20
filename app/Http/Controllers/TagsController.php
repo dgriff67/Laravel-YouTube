@@ -21,6 +21,6 @@ class TagsController extends Controller
 
         $tag->save();
 
-        return redirect('/newTag')->with('status', 'Your tag has been created!');
+        return redirect('/favourites')->with('status', 'Your tag has been created!');
     }
 }
