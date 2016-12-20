@@ -17,7 +17,7 @@ Route::get('/favourite/{id?}', 'FavouritesController@show');
 Route::get('/favourite/{id?}/edit', 'FavouritesController@edit');
 Route::post('/favourite/{id?}/edit', 'FavouritesController@update');
 Route::post('/favourite/{id?}/delete', 'FavouritesController@destroy');
-
+Route::post('/tag', 'TagsController@newTag');
 Route::get('/tags', 'PagesController@tags');
 Route::get('/create', 'FavouritesController@create');
 Route::post('/create', 'FavouritesController@store');
