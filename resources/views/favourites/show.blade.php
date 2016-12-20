@@ -10,7 +10,12 @@
                     <p> {!! $favourite->user_id !!} </p>
                 </div>
                 <a href="{!! action('FavouritesController@edit', $favourite->id) !!}" class="btn btn-info">Edit</a>
-                <a href="#" class="btn btn-info">Delete</a>
+                <form method="post" action="{!! action('FavouritesController@destroy', $favourite->id) !!}" class="pull-left">
+                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                        <div>
+                            <button type="submit" class="btn btn-warning">Delete</button>
+                        </div>
+                </form>
             </div>
     </div>
 
