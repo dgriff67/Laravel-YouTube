@@ -68,7 +68,7 @@ class FavouritesController extends Controller
      */
     public function edit($id)
     {
-        $ticket = Ticket::whereId($id)->firstOrFail();
+        $favourite = Favourite::whereId($id)->firstOrFail();
         return view('favourites.edit', compact('favourite'));
     }
 
@@ -79,9 +79,14 @@ class FavouritesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FavouriteFormRequest $request, $id)
     {
-        //
+        $favourite = Favourite::whereId($id)->firstOrFail();
+        $favourite->title = $request->get('title');
+        $favourite->videoid = $request->get('videoid');
+        $favourite->save();
+        return redirect(action('FavouritesController@edit', $favourite->id))->with('status', 'The favourite '.$id.' has been updated!');
+
     }
 
     /**
