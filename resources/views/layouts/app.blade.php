@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('pageTitle') - YouTube Favourites</title>
+    <title>@yield('title')</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
