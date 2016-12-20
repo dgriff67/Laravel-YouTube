@@ -7,6 +7,11 @@
                 <div class="panel-heading">
                     <h2> Favourites </h2>
                 </div>
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
                 @if ($favourites->isEmpty())
                     <p> There are no favourites.</p>
                 @else
