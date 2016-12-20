@@ -97,6 +97,8 @@ class FavouritesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $favourite = Favourite::whereId($id)->firstOrFail();
+        $favourite->delete();
+        return redirect('/favourites')->with('status', 'The favourite '.$id.' has been deleted!');
     }
 }
