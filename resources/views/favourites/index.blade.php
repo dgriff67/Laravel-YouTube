@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.app')
 @section('title', 'View all Favourites')
 @section('content')
 
