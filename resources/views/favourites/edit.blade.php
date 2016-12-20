@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="content" class="col-lg-2 control-label">Content</label>
+                        <label for="content" class="col-lg-2 control-label">videoid</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="title" name="videoid" value="{!! $favourite->videoid !!}">
                         </div>
