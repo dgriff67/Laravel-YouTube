@@ -26,9 +26,12 @@
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="title" name="title" value="{!! $favourite->title !!}">
                         </div>
+                        <div class="col-lg-10">
+                            <input type="hidden" class="form-control" id="videoid" name="videoid" value="{!! $favourite->videoid !!}">
+                        </div>
                     </div>
                     @foreach($tags as $tag)
-                        <label class="checkbox-inline"><input type="checkbox" name="tag" id="tag" value="{!! $tag->id !!}"> {!! $tag->name !!} </label>
+                        <label class="checkbox-inline"><input type="checkbox" name="tag[]" id="tag" value="{!! $tag->id !!}"> {!! $tag->name !!} </label>
                     @endforeach
 
                     <div class="form-group">
