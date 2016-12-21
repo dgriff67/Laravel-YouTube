@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\FavouriteFormRequest;
 use App\Favourite;
+use Illuminate\Support\Facades\Auth;
 
 class FavouritesController extends Controller
 {
@@ -25,6 +26,8 @@ class FavouritesController extends Controller
      */
     public function index()
     {
+        //$id = Auth::id();
+        //$favourites = Favourite::with('user')->findOrFail($id);
         $favourites = Favourite::all();
         return view('favourites.index', compact('favourites'));
     }
