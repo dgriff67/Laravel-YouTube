@@ -34,4 +34,11 @@ class TagsController extends Controller
 
         return redirect('/favourites')->with('status', 'Your tag has been created!');
     }
+
+    public function index()
+    {
+        $tags = Tag::all();
+        return view('tags.index', compact('tags'));
+    }
+
 }
