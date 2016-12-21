@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'PagesController@home');
-Route::get('/home', 'PagesController@home');
+Route::get('/home', 'HomeController@home');
 Route::get('/favourites', 'FavouritesController@index');
 Route::get('/favourite/{id?}', 'FavouritesController@show');
 Route::get('/favourite/{id?}/edit', 'FavouritesController@edit');
