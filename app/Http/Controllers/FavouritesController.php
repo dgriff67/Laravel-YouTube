@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\FavouriteFormRequest;
 use App\Favourite;
+use App\Tag;
 use Illuminate\Support\Facades\Auth;
 
 class FavouritesController extends Controller
@@ -84,8 +85,10 @@ class FavouritesController extends Controller
      */
     public function edit($id)
     {
+        $user_id = Auth::id();
         $favourite = Favourite::whereId($id)->firstOrFail();
-        return view('favourites.edit', compact('favourite'));
+        $tags = Tag::whereUserId($user_id)->first();
+        return view('favourites.edit', ['favourite' => $favourite, 'tags' => $tags]);
     }
 
     /**
