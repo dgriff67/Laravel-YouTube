@@ -87,7 +87,8 @@ class FavouritesController extends Controller
     {
         $user_id = Auth::id();
         $favourite = Favourite::whereId($id)->firstOrFail();
-        $tags = Tag::whereUserId($user_id)->first();
+        //$tags = Tag::whereUserId($user_id)->first();
+        $tags = Tag::all();
         return view('favourites.edit', ['favourite' => $favourite, 'tags' => $tags]);
     }
 
