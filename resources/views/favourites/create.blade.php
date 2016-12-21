@@ -30,13 +30,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="use_id" class="col-lg-2 control-label">user_id</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="user_id" placeholder="User_id" name="user_id">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
                             <button class="btn btn-default">Cancel</button>
                             <button type="submit" class="btn btn-primary">Submit</button>
