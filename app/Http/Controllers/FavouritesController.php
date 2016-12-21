@@ -50,10 +50,12 @@ class FavouritesController extends Controller
      */
     public function store(FavouriteFormRequest $request)
     {
+        $id = Auth::id();
+
         $favourite = new Favourite(array(
             'title' => $request->get('title'),
             'videoid' => $request->get('videoid'),
-            'user_id' => $request->get('user_id'),
+            'user_id' => $id
         ));
 
         $favourite->save();
