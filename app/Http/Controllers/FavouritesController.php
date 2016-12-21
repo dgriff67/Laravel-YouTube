@@ -103,6 +103,14 @@ class FavouritesController extends Controller
     {
         $favourite = Favourite::whereId($id)->firstOrFail();
         $favourite->title = $request->get('title');
+        //$tags_checked = $request->get('tag');
+        //if(is_array($tags_checked))
+        //{
+        //    foreach ($tags_checked as $tag) {
+        //        $user->tags()->attach($tag);
+        //    }
+        //}
+
         $favourite->save();
         return redirect(action('FavouritesController@edit', $favourite->id))->with('status', 'The favourite '.$id.' has been updated!');
 
