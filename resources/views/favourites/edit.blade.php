@@ -27,7 +27,25 @@
                             <input type="text" class="form-control" id="title" name="title" value="{!! $favourite->title !!}">
                         </div>
                     </div>
-                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tag</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($tags as $tag)
+                                <tr>
+                                    <td>{!! $tag->id !!} </td>
+                                    <td>
+                                        {!! $tag->name !!} 
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
                             <button class="btn btn-default">Cancel</button>
