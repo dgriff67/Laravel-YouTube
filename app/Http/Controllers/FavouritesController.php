@@ -103,7 +103,6 @@ class FavouritesController extends Controller
     {
         $favourite = Favourite::whereId($id)->firstOrFail();
         $favourite->title = $request->get('title');
-        $favourite->videoid = $request->get('videoid');
         $favourite->save();
         return redirect(action('FavouritesController@edit', $favourite->id))->with('status', 'The favourite '.$id.' has been updated!');
 
