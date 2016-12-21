@@ -12,6 +12,17 @@ use App\Tag;
 
 class TagsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function newTag(TagFormRequest $request)
     {
         $tag = new Tag(array(
