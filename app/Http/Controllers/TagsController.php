@@ -23,16 +23,13 @@ class TagsController extends Controller
     }
 
 
-    public function newTag(TagFormRequest $request)
+    public function store(TagFormRequest $request)
     {
-        $tag = new Tag(array(
-            'name' => $request->get('name'),
-            'user_id' => $request->get('user_id'),
-        ));
+        $tag = new Tag();
+        $tag->name = $request['name'];
+        $request->user()->tags()->save($tag);
 
-        $tag->save();
-
-        return redirect('/favourites')->with('status', 'Your tag has been created!');
+        return redirect('/tags')->with('status', 'Your new tag has been created!');
     }
 
     public function index()
