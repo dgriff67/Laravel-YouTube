@@ -27,9 +27,11 @@ class FavouritesController extends Controller
      */
     public function index()
     {
-        //$id = Auth::id();
+        $user_id = Auth::id();
         //$favourites = Favourite::with('user')->findOrFail($id);
-        $favourites = Favourite::all();
+        //$favourites = Favourite::all();
+        $favourites = Favourite::where('user_id', $user_id)
+            ->get();
         return view('favourites.index', compact('favourites'));
     }
 
