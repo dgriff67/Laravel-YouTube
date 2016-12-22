@@ -53,18 +53,13 @@ class FavouritesController extends Controller
      */
     public function store(FavouriteFormRequest $request)
     {
-        $id = Auth::id();
+        $favourite = new Favourite();
+        $favourite->title = $request->get('title');
+        $favourite->videoid = $request->get('videoid');
 
-        $favourite = new Favourite(array(
-            'title' => $request->get('title'),
-            'videoid' => $request->get('videoid'),
-            'user_id' => $id
-        ));
+        $request->user()->favourites()->save($favourite);
 
-        $favourite->save();
-
-        return redirect('/create')->with('status', 'Your favourite has been created!');
-        //return $request->all();
+        return redirect('/favourites')->with('status', 'Your favourite has been created!');
     }
 
     /**
