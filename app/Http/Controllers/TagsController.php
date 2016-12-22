@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\Http\Requests\TagFormRequest;
-
+use Illuminate\Support\Facades\Auth;
 use App\Tag;
 
 class TagsController extends Controller
@@ -34,7 +32,9 @@ class TagsController extends Controller
 
     public function index()
     {
-        $tags = Tag::all();
+        $user_id = Auth::id();
+        $tags = Tag::where('user_id', $user_id)
+            ->get();
         return view('tags.index', compact('tags'));
     }
 
