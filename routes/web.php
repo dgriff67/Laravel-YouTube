@@ -25,8 +25,8 @@ Route::post('/favourite/{id?}/delete', 'FavouritesController@destroy');
 Route::get('users/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('users/register', 'Auth\RegisterController@register');
 
-Route::post('/tag', 'TagsController@newTag');
 Route::get('/tags', 'TagsController@index');
+Route::post('/tags', 'TagsController@store');
 
 Route::get('/create', 'FavouritesController@create');
 Route::post('/create', 'FavouritesController@store');
