@@ -15,6 +15,6 @@ class Tag extends Model
 
     public function favourites()
     {
-        return $this->hasMany(Favourite::class);
+        return $this->belongsToMany(Favourite::class);
     }
 }
