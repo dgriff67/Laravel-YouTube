@@ -7,6 +7,7 @@ use App\Http\Requests\FavouriteFormRequest;
 use App\Favourite;
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class FavouritesController extends Controller
 {
@@ -84,8 +85,16 @@ class FavouritesController extends Controller
     {
         $user_id = Auth::id();
         $favourite = Favourite::whereId($id)->firstOrFail();
-        //$tags = Tag::whereUserId($user_id)->first();
-        $tags = Tag::all();
+        $tags = Tag::where('user_id', $user_id)->get();
+        foreach ($tags as $tag) {
+            $tag->checked = (DB::table('tags')
+                            ->join('favourite_tag', 'tags.id', '=', 'favourite_tag.tag_id')
+                            ->where('favourite_tag.favourite_id', $id)
+                            ->where('favourite_tag.tag_id', $tag->id)
+                            ->count() > 0)
+                            ? true
+                            : false;
+        }
         return view('favourites.edit', ['favourite' => $favourite, 'tags' => $tags]);
     }
 
@@ -99,16 +108,18 @@ class FavouritesController extends Controller
     public function update(FavouriteFormRequest $request, $id)
     {
         $favourite = Favourite::whereId($id)->firstOrFail();
-        $favourite->title = $request->get('title');
-        //$tags_checked = $request->get('tag');
-        //if(is_array($tags_checked))
-        //{
-        //    foreach ($tags_checked as $tag) {
-        //        $user->tags()->attach($tag);
-        //    }
-        //}
+        $tags_checked = $request->get('tag');
+        if(is_array($tags_checked))
+        {
+            foreach ($tags_checked as $tag_id) {
+                $tag = Tag::whereId($tag_id)->firstOrFail();
+                $favourite->tags()->attach($tag);
+            }
+        }
 
-        $favourite->save();
+        $favourite->title = $request->input('title');
+        $favourite->update();
+
         return redirect(action('FavouritesController@edit', $favourite->id))->with('status', 'The favourite '.$id.' has been updated!');
 
     }
