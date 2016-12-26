@@ -31,7 +31,13 @@
                         </div>
                     </div>
                     @foreach($tags as $tag)
-                        <label class="checkbox-inline"><input type="checkbox" name="tag[]" id="tag" value="{!! $tag->id !!}"> {!! $tag->name !!} </label>
+
+                        <label class="checkbox-inline"><input type="checkbox"
+                            @if ($tag->checked)
+                                checked = "checked"
+                            @endif
+                            name="tag[]" id="tag" value="{!! $tag->id !!}"> {!! $tag->name !!}
+                        </label>
                     @endforeach
 
                     <div class="form-group">
