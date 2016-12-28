@@ -18,7 +18,10 @@
                     <legend>Search</legend>
                     <div class="form-group">
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="title" placeholder="Search term" name="searchTerm">
+                            <input type="search" class="form-control" id="q" name="q" placeholder="Enter search term" name="searchTerm">
+                        </div>
+                        <div>
+                            Max Results: <input type="number" id="maxResults" name="maxResults" min="1" max="10" step="1" value="5">
                         </div>
                     </div>
 
