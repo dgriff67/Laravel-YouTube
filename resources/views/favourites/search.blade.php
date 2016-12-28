@@ -32,6 +32,29 @@
                     </div>
                 </fieldset>
             </form>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Videoid</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($searchResponse as $searchResult)
+                            @if ($searchResult['id']['kind'] =='youtube#video')
+                                <tr>
+                                    <td>
+                                        <img src="https://img.youtube.com/vi/{!! $searchResult['id']['videoId'] !!}/default.jpg" alt="{!! $searchResult['snippet']['title'] !!}" style="width:width;height:height;"><a >{!! $searchResult['snippet']['title'] !!} </a>
+                                    </td>
+                                    <td>
+                                        {!! $searchResult['id']['videoId'] !!}
+                                    </td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    </tbody>
+                </table>
+
         </div>
     </div>
 @endsection
