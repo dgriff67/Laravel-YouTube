@@ -87,13 +87,7 @@ class FavouritesController extends Controller
         $favourite = Favourite::whereId($id)->firstOrFail();
         $tags = Tag::where('user_id', $user_id)->get();
         foreach ($tags as $tag) {
-            $tag->checked = (DB::table('tags')
-                            ->join('favourite_tag', 'tags.id', '=', 'favourite_tag.tag_id')
-                            ->where('favourite_tag.favourite_id', $id)
-                            ->where('favourite_tag.tag_id', $tag->id)
-                            ->count() > 0)
-                            ? true
-                            : false;
+            $tag->checked = $tag->favourites()->where('favourites.id',$id)->count()>0;
         }
         return view('favourites.edit', ['favourite' => $favourite, 'tags' => $tags]);
     }
@@ -109,6 +103,7 @@ class FavouritesController extends Controller
     {
         $favourite = Favourite::whereId($id)->firstOrFail();
         $tags_checked = $request->get('tag');
+
         if(is_array($tags_checked))
         {
             foreach ($tags_checked as $tag_id) {
