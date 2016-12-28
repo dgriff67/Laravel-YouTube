@@ -72,7 +72,7 @@ class FavouritesController extends Controller
     public function show($id)
     {
         $favourite = Favourite::whereId($id)->firstOrFail();
-        return view('favourites.show', compact('favourite'));
+        return view('favourites.show', ['favourite'=> $favourite]);
     }
 
     /**
@@ -102,8 +102,9 @@ class FavouritesController extends Controller
     public function update(FavouriteFormRequest $request, $id)
     {
         $favourite = Favourite::whereId($id)->firstOrFail();
-        $tags_checked = $request->get('tag');
+        $favourite->tags()->detach();
 
+        $tags_checked = $request->get('tag');
         if(is_array($tags_checked))
         {
             foreach ($tags_checked as $tag_id) {
