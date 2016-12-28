@@ -22,8 +22,8 @@ Route::post('/favourite/{id?}/edit', 'FavouritesController@update');
 
 Route::post('/favourite/{id?}/delete', 'FavouritesController@destroy');
 
-Route::get('/favourite/search', 'FavouritesController@search');
-Route::post('/favourite/search', 'FavouritesController@searchResults');
+Route::get('/search', 'FavouritesController@search');
+Route::post('/search', 'FavouritesController@searchResults');
 
 Route::get('users/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('users/register', 'Auth\RegisterController@register');
