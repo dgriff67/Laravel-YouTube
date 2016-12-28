@@ -17,7 +17,7 @@
                 <fieldset>
                     <legend>Search</legend>
                     <div class="form-group">
-                        <div class="col-lg-10">
+                        <div class="col-lg-8">
                             <input type="search" class="form-control" id="q" name="q" placeholder="Enter search term" name="searchTerm">
                         </div>
                         <div>
@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-lg-10 ">
+                        <div class="col-lg-8 ">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
