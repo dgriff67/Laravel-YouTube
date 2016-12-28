@@ -41,17 +41,6 @@ class FavouritesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function search()
-    {
-        return view('favourites.search');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('favourites.create');
