@@ -32,6 +32,8 @@
                     </div>
                 </fieldset>
             </form>
+            @if ($searchResponse === NULL)
+            @else
                 <table class="table">
                     <thead>
                         <tr>
@@ -44,17 +46,37 @@
                             @if ($searchResult['id']['kind'] =='youtube#video')
                                 <tr>
                                     <td>
-                                        <img src="https://img.youtube.com/vi/{!! $searchResult['id']['videoId'] !!}/default.jpg" alt="{!! $searchResult['snippet']['title'] !!}" style="width:width;height:height;"><a >{!! $searchResult['snippet']['title'] !!} </a>
+                                        <img src="{!! $searchResult['snippet']['thumbnails']['default']['url'] !!}" alt="{!! $searchResult['snippet']['title'] !!}" style="width:width;height:height;"><a >{!! $searchResult['snippet']['title'] !!} </a>
                                     </td>
                                     <td>
                                         {!! $searchResult['id']['videoId'] !!}
                                     </td>
                                 </tr>
                             @endif
+                            @if ($searchResult['id']['kind'] =='youtube#channel')
+                                <tr>
+                                    <td>
+                                        <img src="{!! $searchResult['snippet']['thumbnails']['default']['url'] !!}" alt="{!! $searchResult['snippet']['title'] !!}" style="width:width;height:height;"><a >{!! $searchResult['snippet']['title'] !!} </a>
+                                    </td>
+                                    <td>
+                                        {!! $searchResult['id']['channelId'] !!}
+                                    </td>
+                                </tr>
+                            @endif
+                            @if ($searchResult['id']['kind'] =='youtube#playlist')
+                                <tr>
+                                    <td>
+                                        <img src="{!! $searchResult['snippet']['thumbnails']['default']['url'] !!}" alt="{!! $searchResult['snippet']['title'] !!}" style="width:width;height:height;"><a >{!! $searchResult['snippet']['title'] !!} </a>
+                                    </td>
+                                    <td>
+                                        {!! $searchResult['id']['playlistId'] !!}
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
-
+            @endif
         </div>
     </div>
 @endsection
