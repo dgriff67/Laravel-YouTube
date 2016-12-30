@@ -7,14 +7,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">YouTube Favourites</a>
+            <a class="navbar-brand" href="{{ url('/') }}">YouTube Favourites</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#">YouTube</a></li>
-                <li><a href="#">Favourites</a></li>
-                <li><a href"#">Tags</a></li>
+                <li><a href="{{ url('/favourites') }}">Favourites</a></li>
+                <li><a href="{{ url('/tags') }}">Tags</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
