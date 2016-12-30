@@ -37,42 +37,44 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>Image</th>
                             <th>Title</th>
-                            <th>Videoid</th>
+                            <th>Action</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($searchResponse as $searchResult)
-                            @if ($searchResult['id']['kind'] =='youtube#video')
-                                <tr>
-                                    <td>
-                                        <img src="{!! $searchResult['snippet']['thumbnails']['default']['url'] !!}" alt="{!! $searchResult['snippet']['title'] !!}" style="width:width;height:height;"><a >{!! $searchResult['snippet']['title'] !!} </a>
-                                    </td>
-                                    <td>
-                                        {!! $searchResult['id']['videoId'] !!}
-                                    </td>
-                                </tr>
-                            @endif
-                            @if ($searchResult['id']['kind'] =='youtube#channel')
-                                <tr>
-                                    <td>
-                                        <img src="{!! $searchResult['snippet']['thumbnails']['default']['url'] !!}" alt="{!! $searchResult['snippet']['title'] !!}" style="width:width;height:height;"><a >{!! $searchResult['snippet']['title'] !!} </a>
-                                    </td>
-                                    <td>
-                                        {!! $searchResult['id']['channelId'] !!}
-                                    </td>
-                                </tr>
-                            @endif
-                            @if ($searchResult['id']['kind'] =='youtube#playlist')
-                                <tr>
-                                    <td>
-                                        <img src="{!! $searchResult['snippet']['thumbnails']['default']['url'] !!}" alt="{!! $searchResult['snippet']['title'] !!}" style="width:width;height:height;"><a >{!! $searchResult['snippet']['title'] !!} </a>
-                                    </td>
-                                    <td>
-                                        {!! $searchResult['id']['playlistId'] !!}
-                                    </td>
-                                </tr>
-                            @endif
+                            <tr>
+                                <td>
+                                    <img src="{!! $searchResult['snippet']['thumbnails']['default']['url'] !!}" alt="{!! $searchResult['snippet']['title'] !!}" style="width:width;height:height;">
+                                </td>
+                                <td>
+                                    {!! $searchResult['snippet']['title'] !!}
+                                </td>
+                                <td>
+                                    <form action="{{ route('favourite.store') }}" method="post">
+                                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                        <div class="form-group">
+                                            <input type="hidden" value="{!! $searchResult['snippet']['title'] !!}" name="title">
+                                            <input type="hidden" value="{!! $searchResult['snippet']['thumbnails']['default']['url'] !!}" name="imageUrl">
+                                            <input type="hidden" value="{!! $searchResult['id']['kind'] !!}" name="kind">
+                                            @if ($searchResult['id']['kind'] =='youtube#video')
+                                                <input type="hidden" value="{!! $searchResult['id']['videoId'] !!}" name="videoid">
+                                            @endif
+                                            @if ($searchResult['id']['kind'] =='youtube#channel')
+                                                <input type="hidden" value="{!! $searchResult['id']['channelId'] !!}" name="videoid">
+                                            @endif
+                                            @if ($searchResult['id']['kind'] =='youtube#playlist')
+                                                <input type="hidden" value="{!! $searchResult['id']['playlistId'] !!}" name="videoid">
+                                            @endif
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Add Favourite</button>
+
+                                    </form>
+                                </td>
+                            </tr>
+
                         @endforeach
                     </tbody>
                 </table>
