@@ -28,7 +28,11 @@
                                 <tr>
                                     <td>{!! $favourite->id !!} </td>
                                     <td>
-                                        <a href="{!! action('FavouritesController@show', $favourite->id) !!}">{!! $favourite->title !!} </a>
+                                        @if ($favourite->kind == 'youtube#channel')
+                                            <a href="https://www.youtube.com/channel/{!! $favourite->videoid !!}" target='_blank'>{!! $favourite->title !!} </a>
+                                        @else
+                                            <a href="{!! action('FavouritesController@show', $favourite->id) !!}">{!! $favourite->title !!} </a>
+                                        @endif
                                     </td>
                                     <td>{!! $favourite->videoid !!}</td>
                                 </tr>
