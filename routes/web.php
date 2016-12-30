@@ -15,25 +15,50 @@ Route::get('/', 'PagesController@home');
 Route::get('/home', 'HomeController@home');
 Route::get('/favourites', 'FavouritesController@index');
 
-Route::get('/favourite/{id?}', 'FavouritesController@show');
+Route::get('/favourite/{id?}', [
+            'uses' => 'FavouritesController@show',
+            'as' => 'favourite.show'
+        ]);
 
-Route::get('/favourite/{id?}/edit', 'FavouritesController@edit');
-Route::post('/favourite/{id?}/edit', 'FavouritesController@update');
+Route::get('/favourite/{id?}/edit', [
+            'uses' => 'FavouritesController@edit',
+            'as' => 'favourite.edit'
+        ]);
+Route::post('/favourite/{id?}/edit', [
+            'uses' => 'FavouritesController@update',
+            'as' => 'favourite.update'
+        ]);
 
-Route::post('/favourite/{id?}/delete', 'FavouritesController@destroy');
+Route::post('/create', [
+            'uses' => 'FavouritesController@store',
+            'as' => 'favourite.store'
+        ]);
 
-Route::get('/search', 'SearchController@search');
-Route::post('/search', 'SearchController@results');
+Route::get('/create', [
+            'uses' => 'FavouritesController@create',
+            'as' => 'favourite.create'
+        ]);
+
+Route::post('/favourite/{id?}/delete', [
+            'uses' => 'FavouritesController@destroy',
+            'as' => 'favourite.delete'
+        ]);
+
+Route::get('/search', [
+            'uses' => 'SearchController@search',
+            'as' => 'search.get'
+        ]);
+
+Route::post('/search', [
+            'uses' => 'SearchController@results',
+            'as' => 'search.post'
+        ]);
 
 Route::get('users/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('users/register', 'Auth\RegisterController@register');
 
 Route::get('/tags', 'TagsController@index');
 Route::post('/tags', 'TagsController@store');
-
-Route::get('/create', 'FavouritesController@create');
-Route::post('/create', 'FavouritesController@store');
-
 
 Route::group(['prefix' => 'api'], function(){
     Route::get('favourites', ['as' => 'favourites', function () {
