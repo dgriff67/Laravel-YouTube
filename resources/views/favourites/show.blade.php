@@ -13,9 +13,14 @@
     <div class="container col-md-4">
             <div class="well well bs-component">
                 <div>
-                    <!--<iframe frameborder="0" src="https://www.youtube.com/embed/{!! $favourite->videoid!!}?autoplay=1" allowfullscreen="allowfullscreen" width="320" height="240" frameborder="0">
-                    </iframe>-->
-                    <iframe src="http://www.youtube.com/embed/videoseries?list=PLTnFiaQJwh6G6247WfNO4Ig5s-4ny52Wg&index=0" frameborder="0" allowfullscreen></iframe>
+                    @if ($favourite->kind == 'youtube#video')
+                        <iframe frameborder="0" src="https://www.youtube.com/embed/{!! $favourite->videoid!!}?autoplay=1" allowfullscreen="allowfullscreen" width="320" height="240" frameborder="0">
+                        </iframe>
+                    @endif
+                    @if ($favourite->kind == 'youtube#playlist')
+                        <iframe frameborder="0" src="https://www.youtube.com/embed/videoseries?list={!! $favourite->videoid!!}&index=0" allowfullscreen="allowfullscreen" width="320" height="240" frameborder="0">
+                        </iframe>
+                    @endif
                 </div>
                 <div class="content">
                     <h2 class="header">{!! $favourite->title !!}</h2>
