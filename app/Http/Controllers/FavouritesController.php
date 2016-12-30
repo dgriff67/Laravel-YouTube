@@ -57,6 +57,8 @@ class FavouritesController extends Controller
         $favourite = new Favourite();
         $favourite->title = $request->get('title');
         $favourite->videoid = $request->get('videoid');
+        $favourite->kind = $request->get('kind');
+        $favourite->imageUrl = $request->get('imageUrl');
 
         $request->user()->favourites()->save($favourite);
 
