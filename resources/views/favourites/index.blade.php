@@ -26,7 +26,13 @@
                         <tbody>
                             @foreach($favourites as $favourite)
                                 <tr>
-                                    <td>{!! $favourite->id !!} </td>
+                                    <td>
+                                        @if ($favourite->kind == 'youtube#channel')
+                                            <a href="https://www.youtube.com/channel/{!! $favourite->videoid !!}" target='_blank'><img src="{!! $favourite->imageUrl !!}" alt="{!! $favourite->title !!}" style="width:width;height:height;"></a>
+                                        @else
+                                            <a href="{!! action('FavouritesController@show', $favourite->id) !!}"><img src="{!! $favourite->imageUrl !!}" alt="{!! $favourite->title !!}" style="width:width;height:height;"></a>
+                                        @endif
+                                    </td>
                                     <td>
                                         @if ($favourite->kind == 'youtube#channel')
                                             <a href="https://www.youtube.com/channel/{!! $favourite->videoid !!}" target='_blank'>{!! $favourite->title !!} </a>
