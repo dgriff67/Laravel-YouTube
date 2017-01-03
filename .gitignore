@@ -4,6 +4,7 @@
 /public/js
 /public/css
 /vendor
+/config/google.php
 /.idea
 Homestead.json
 Homestead.yaml
