@@ -32,6 +32,7 @@ class SearchController extends Controller
 
         $client = new Google_Client();
         $client->setDeveloperKey($DEVELOPER_KEY);
+        $request->flash();
         // Define an object that will be used to make all API requests.
         $youtube = new Google_Service_YouTube($client);
         try {
@@ -41,10 +42,10 @@ class SearchController extends Controller
               'maxResults' => $request->get('maxResults')
             ));
             return view('favourites.search', ['searchResponse'=> $searchResponse]);
-        } catch (Google_Service_Exception $e) {
-            $e->getMessage();
-        } catch (Google_Exception $e) {
-            $e->getMessage();
+        } catch (\Google_Service_Exception $e) {
+            return response()->view('errors.google', compact('e'), $e->getCode());
+        } catch (\Google_Exception $e) {
+            return response()->view('errors.google', compact('e'), $e->getCode());
         }
     }
 }
