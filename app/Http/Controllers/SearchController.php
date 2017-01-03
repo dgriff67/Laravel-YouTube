@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Google_Client;
 use Google_Service_YouTube;
 
@@ -27,7 +28,7 @@ class SearchController extends Controller
 
     public function results(Request $request)
     {
-        $DEVELOPER_KEY = 'AIzaSyCiFuJxg2zt20dZgRyw5Q7w1sajIORrBEg';
+        $DEVELOPER_KEY = Config::get('google.developer_key');
 
         $client = new Google_Client();
         $client->setDeveloperKey($DEVELOPER_KEY);
