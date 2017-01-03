@@ -21,7 +21,7 @@
                             <input type="search" class="form-control" id="q" placeholder="Enter search term" name="q" value="{{ old('q')}}">
                         </div>
                         <div>
-                            Max Results: <input type="number" id="maxResults" placeholder="5" name="maxResults" min="1" max="10" step="1" value="{{ old('maxResults')}}">
+                            Max Results: <input type="number" id="maxResults" name="maxResults" min="1" max="10" step="1" value="{{ old('maxResults') ? old('maxResults') : 5 }}">
                         </div>
                     </div>
 
@@ -53,7 +53,7 @@
                                     {!! $searchResult['snippet']['title'] !!}
                                 </td>
                                 <td>
-                                    <form action="{{ action('FavouritesController@store') }}" method="post">
+                                    <form action="{{ route('favourite.store') }}" method="post">
                                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                         <div class="form-group">
                                             <input type="hidden" value="{!! $searchResult['snippet']['title'] !!}" name="title">
