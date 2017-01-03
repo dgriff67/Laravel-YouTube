@@ -53,7 +53,7 @@
                                     {!! $searchResult['snippet']['title'] !!}
                                 </td>
                                 <td>
-                                    <form action="{{ route('favourite.store') }}" method="post">
+                                    <form action="{{ action('FavouritesController@store') }}" method="post">
                                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                         <div class="form-group">
                                             <input type="hidden" value="{!! $searchResult['snippet']['title'] !!}" name="title">
