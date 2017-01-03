@@ -29,16 +29,6 @@ Route::post('/favourite/{id?}/edit', [
             'as' => 'favourite.update'
         ]);
 
-Route::post('/create', [
-            'uses' => 'FavouritesController@store',
-            'as' => 'favourite.store'
-        ]);
-
-Route::get('/create', [
-            'uses' => 'FavouritesController@create',
-            'as' => 'favourite.create'
-        ]);
-
 Route::post('/favourite/{id?}/delete', [
             'uses' => 'FavouritesController@destroy',
             'as' => 'favourite.delete'
