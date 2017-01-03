@@ -18,10 +18,10 @@
                     <legend>Search</legend>
                     <div class="form-group">
                         <div class="col-lg-8">
-                            <input type="search" class="form-control" id="q" name="q" placeholder="Enter search term" name="searchTerm">
+                            <input type="search" class="form-control" id="q" placeholder="Enter search term" name="q" value="{{ old('q')}}">
                         </div>
                         <div>
-                            Max Results: <input type="number" id="maxResults" name="maxResults" min="1" max="10" step="1" value="5">
+                            Max Results: <input type="number" id="maxResults" placeholder="5" name="maxResults" min="1" max="10" step="1" value="{{ old('maxResults')}}">
                         </div>
                     </div>
 
