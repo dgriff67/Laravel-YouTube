@@ -35,9 +35,9 @@
                                     </td>
                                     <td>
                                         @if ($favourite->kind == 'youtube#channel')
-                                            <a href="https://www.youtube.com/channel/{!! $favourite->videoid !!}" target='_blank'>{!! $favourite->title !!} </a>
+                                            <a href="https://www.youtube.com/channel/{!! $favourite->videoid !!}" target='_blank'>{!! $favourite->title !!} <br> {!!$favourite->tag_string !!}</a>
                                         @else
-                                            <a href="{!! action('FavouritesController@show', $favourite->id) !!}">{!! $favourite->title !!} </a>
+                                            <a href="{!! action('FavouritesController@show', $favourite->id) !!}">{!! $favourite->title !!} <br>{!!$favourite->tag_string !!} </a>
                                         @endif
                                     </td>
                                     <td>{!! $favourite->videoid !!}</td>
