@@ -23,7 +23,7 @@ class SearchController extends Controller
     public function search()
     {
         $searchResponse = NULL;
-        return view('favourites.search', ['searchResponse'=> $searchResponse]);
+        return view('search.index', ['searchResponse'=> $searchResponse]);
     }
 
     public function results(Request $request)
@@ -41,7 +41,7 @@ class SearchController extends Controller
               'q' => $request->get('q'),
               'maxResults' => $request->get('maxResults')
             ));
-            return view('favourites.search', ['searchResponse'=> $searchResponse]);
+            return view('search.index', ['searchResponse'=> $searchResponse]);
         } catch (\Google_Service_Exception $e) {
             return response()->view('errors.google', compact('e'), $e->getCode());
         } catch (\Google_Exception $e) {
