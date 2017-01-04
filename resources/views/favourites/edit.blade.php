@@ -2,7 +2,7 @@
 @section('title', 'Edit a favourite')
 
 @section('content')
-    <div class="container col-md-8 col-md-offset-2">
+    <div class="container col-md-6">
         <div class="well well bs-component">
 
             <form class="form-horizontal" method="post">
@@ -22,11 +22,11 @@
                 <fieldset>
                     <legend>Edit favourite</legend>
                     <div class="form-group">
-                        <label for="title" class="col-lg-2 control-label">Title</label>
-                        <div class="col-lg-10">
+                        <label for="title">Title</label>
+                        <div>
                             <input type="text" class="form-control" id="title" name="title" value="{!! $favourite->title !!}">
                         </div>
-                        <div class="col-lg-10">
+                        <div>
                             <input type="hidden" class="form-control" id="videoid" name="videoid" value="{!! $favourite->videoid !!}">
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                     @endforeach
 
                     <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-2">
+                        <div >
                             <button class="btn btn-default">Cancel</button>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
