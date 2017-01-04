@@ -23,6 +23,7 @@
                 </div>
                 <div class="content">
                     <h2 class="header">{!! $favourite->title !!}</h2>
+                    <h3 class="header">{!! $tag_string !!}</h3>
                 </div>
                 <a href="{!! action('FavouritesController@edit', $favourite->id) !!}" class="btn btn-info">Edit</a>
                 <form method="post" action="{!! action('FavouritesController@destroy', $favourite->id) !!}" class="pull-left">
