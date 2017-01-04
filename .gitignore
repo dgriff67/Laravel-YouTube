@@ -2,7 +2,7 @@
 /public/storage
 /public/fonts
 /public/js
-/public/css
+/public/css/bootstrap*
 /vendor
 /config/google.php
 /.idea
