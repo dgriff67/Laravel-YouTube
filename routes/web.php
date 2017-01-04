@@ -44,6 +44,15 @@ Route::post('/search', [
             'as' => 'search.post'
         ]);
 
+Route::post('/create', [
+            'uses' => 'FavouritesController@store',
+            'as' => 'favourite.create'
+        ]);
+
+Route::get('/create', function(){
+    return redirect()->route('search.get');
+});
+
 Route::get('users/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('users/register', 'Auth\RegisterController@register');
 
