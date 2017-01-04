@@ -73,8 +73,16 @@ class FavouritesController extends Controller
      */
     public function show($id)
     {
+        $user_id = Auth::id();
         $favourite = Favourite::whereId($id)->firstOrFail();
-        return view('favourites.show', ['favourite'=> $favourite]);
+        $tags = Tag::where('user_id', $user_id)->get();
+        $tag_string = '';
+        foreach ($tags as $tag) {
+            if ($tag->favourites()->where('favourites.id',$id)->count()>0) {
+                $tag_string .= '|' . $tag->name;
+            };
+        }
+        return view('favourites.show', ['favourite'=> $favourite , 'tag_string' => $tag_string]);
     }
 
     /**
