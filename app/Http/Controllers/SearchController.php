@@ -26,6 +26,17 @@ class SearchController extends Controller
         return view('search.index', ['searchResponse'=> $searchResponse]);
     }
 
+    /**
+     * Play search result.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function play(Request $request)
+    {
+        return view('search.play', ['searchResult'=> $request]);
+    }
+
     public function results(Request $request)
     {
         if ($request->get('q') == NULL) {
