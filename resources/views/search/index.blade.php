@@ -41,18 +41,7 @@
                                 <form action="{{ route('search.play') }}" method="get">
                                 {{ csrf_field() }}
                                         <div class="form-group">
-                                            {{ Form::hidden('title', $searchResult['snippet']['title']) }}
-                                            {{ Form::hidden('imageUrl', $searchResult['snippet']['thumbnails']['default']['url']) }}
-                                            {{ Form::hidden('kind', $searchResult['id']['kind']) }}
-                                            @if ($searchResult['id']['kind'] =='youtube#video')
-                                                {{ Form::hidden('videoid', $searchResult['id']['videoId']) }}
-                                            @endif
-                                            @if ($searchResult['id']['kind'] =='youtube#channel')
-                                                {{ Form::hidden('videoid', $searchResult['id']['channelId']) }}
-                                            @endif
-                                            @if ($searchResult['id']['kind'] =='youtube#playlist')
-                                                {{ Form::hidden('videoid', $searchResult['id']['playlistId']) }}
-                                            @endif
+                                            @include('shared.hidden_fields')
                                         </div>
                                     <input type="image" src="{!! $searchResult['snippet']['thumbnails']['default']['url'] !!}" alt="{!! $searchResult['snippet']['title'] !!}" style="width:width;height:height;">
                                 </form>
@@ -64,18 +53,7 @@
                                 <form action="{{ route('favourite.create') }}" method="post">
                                     {{ csrf_field() }}
                                         <div class="form-group">
-                                            {{ Form::hidden('title', $searchResult['snippet']['title']) }}
-                                            {{ Form::hidden('imageUrl', $searchResult['snippet']['thumbnails']['default']['url']) }}
-                                            {{ Form::hidden('kind', $searchResult['id']['kind']) }}
-                                            @if ($searchResult['id']['kind'] =='youtube#video')
-                                                {{ Form::hidden('videoid', $searchResult['id']['videoId']) }}
-                                            @endif
-                                            @if ($searchResult['id']['kind'] =='youtube#channel')
-                                                {{ Form::hidden('videoid', $searchResult['id']['channelId']) }}
-                                            @endif
-                                            @if ($searchResult['id']['kind'] =='youtube#playlist')
-                                                {{ Form::hidden('videoid', $searchResult['id']['playlistId']) }}
-                                            @endif
+                                            @include('shared.hidden_fields')
                                         </div>
                                     <button type="submit" class="btn btn-primary">Add Favourite</button>
 
