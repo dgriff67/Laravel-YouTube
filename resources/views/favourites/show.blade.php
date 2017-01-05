@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'View a favourite')
+@section('title', 'View favourite')
 @section('content')
     <div class="container col-md-4">
             <div class="well well bs-component">
