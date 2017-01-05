@@ -35,14 +35,14 @@ Route::post('/favourite/{id?}/delete', [
         ]);
 
 Route::get('/search', [
-            'uses' => 'SearchController@search',
+            'uses' => 'SearchController@results',
             'as' => 'search.get'
         ]);
 
-Route::post('/search', [
-            'uses' => 'SearchController@results',
-            'as' => 'search.post'
-        ]);
+//Route::post('/search', [
+//            'uses' => 'SearchController@results',
+//            'as' => 'search.post'
+//        ]);
 
 Route::post('/create', [
             'uses' => 'FavouritesController@store',
