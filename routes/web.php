@@ -39,19 +39,19 @@ Route::get('/search', [
             'as' => 'search.get'
         ]);
 
-//Route::post('/search', [
-//            'uses' => 'SearchController@results',
-//            'as' => 'search.post'
-//        ]);
-
-Route::post('/create', [
+Route::post('/search', [
             'uses' => 'FavouritesController@store',
             'as' => 'favourite.create'
         ]);
 
-Route::get('/create', function(){
-    return redirect()->route('search.get');
-});
+//Route::post('/create', [
+//            'uses' => 'FavouritesController@store',
+//            'as' => 'favourite.create'
+//        ]);
+
+//Route::get('/create', function(){
+//    return redirect()->route('search.get');
+//});
 
 Route::get('users/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('users/register', 'Auth\RegisterController@register');
