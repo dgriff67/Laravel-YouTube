@@ -52,7 +52,24 @@
 
                             </td>
                             <td>
-                                {!! $searchResult['snippet']['title'] !!}
+
+                                @if ($searchResult['id']['kind'] =='youtube#channel')
+                                    <a href="https://www.youtube.com/channel/{!! $searchResult['id']['channelId'] !!}" target='_blank'>{!! $searchResult['snippet']['title'] !!}</a>
+                                @else
+                                    @if ($searchResult['id']['kind'] =='youtube#video')
+                                        {!! link_to_route('search.play', $searchResult['snippet']['title'], $parameters = array(
+                                        'title'=> $searchResult['snippet']['title'],
+                                        'imageUrl'=> $searchResult['snippet']['thumbnails']['default']['url'],
+                                        'kind'=> $searchResult['id']['kind'],
+                                        'videoid'=> $searchResult['id']['videoId'])) !!}
+                                    @else
+                                        {!! link_to_route('search.play', $searchResult['snippet']['title'], $parameters = array(
+                                        'title'=> $searchResult['snippet']['title'],
+                                        'imageUrl'=> $searchResult['snippet']['thumbnails']['default']['url'],
+                                        'kind'=> $searchResult['id']['kind'],
+                                        'videoid'=> $searchResult['id']['playlistId'])) !!}
+                                    @endif
+                                @endif
                             </td>
                             <td>
                                 <form action="{{ route('favourite.create') }}" method="post">
