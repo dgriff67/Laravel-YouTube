@@ -28,6 +28,10 @@ class SearchController extends Controller
 
     public function results(Request $request)
     {
+        if ($request->get('q') == NULL) {
+            $searchResponse = NULL;
+            return view('search.index', ['searchResponse'=> $searchResponse]);
+        }
         $DEVELOPER_KEY = Config::get('google.developer_key');
 
         $client = new Google_Client();
