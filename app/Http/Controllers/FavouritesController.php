@@ -73,8 +73,7 @@ class FavouritesController extends Controller
         $favourite->imageUrl = $request->get('imageUrl');
 
         $request->user()->favourites()->save($favourite);
-        $request->session()->flash('status', 'Favourite successfully created!');
-        return view('favourites.show', ['favourite'=> $favourite]);
+        return redirect(action('FavouritesController@show', $favourite->id))->with('status', 'Your favourite '.$favourite->id.' has been created!');
     }
 
     /**
