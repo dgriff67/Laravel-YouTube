@@ -24,6 +24,18 @@
                 <div class="content">
                     <h2 class="header">{!! $searchResult->title !!}</h2>
                 </div>
+                <form method="post" action="{!! action('FavouritesController@store') !!}">
+                    {{ csrf_field() }}
+                    {{ Form::hidden('title', $searchResult->title) }}
+                    {{ Form::hidden('imageUrl', $searchResult->imageUrl) }}
+                    {{ Form::hidden('kind', $searchResult->kind) }}
+                    {{ Form::hidden('videoid', $searchResult->videoid) }}
+                    <div>
+                        <button type="submit" class="btn btn-primary">Add Favourite</button>
+                        {!! link_to(URL::previous(), 'Back', ['class' => 'btn btn-info']) !!}
+                    </div>
+                </form>
+
             </div>
     </div>
 @endsection
