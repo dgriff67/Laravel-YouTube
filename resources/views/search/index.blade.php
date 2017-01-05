@@ -38,13 +38,18 @@
                     @foreach($searchResponse as $searchResult)
                         <tr>
                             <td>
-                                <form action="{{ route('search.play') }}" method="get">
-                                {{ csrf_field() }}
-                                        <div class="form-group">
-                                            @include('shared.hidden_fields')
-                                        </div>
-                                    <input type="image" src="{!! $searchResult['snippet']['thumbnails']['default']['url'] !!}" alt="{!! $searchResult['snippet']['title'] !!}" style="width:width;height:height;">
-                                </form>
+                                @if ($searchResult['id']['kind'] =='youtube#channel')
+                                    <a href="https://www.youtube.com/channel/{!! $searchResult['id']['channelId'] !!}" target='_blank'><img src="{!! $searchResult['snippet']['thumbnails']['default']['url'] !!}" alt="{!! $searchResult['snippet']['title'] !!}" style="width:width;height:height;"></a>
+                                @else
+                                    <form action="{{ route('search.play') }}" method="get">
+                                        {{ csrf_field() }}
+                                            <div class="form-group">
+                                                @include('shared.hidden_fields')
+                                            </div>
+                                        <input type="image" src="{!! $searchResult['snippet']['thumbnails']['default']['url'] !!}" alt="{!! $searchResult['snippet']['title'] !!}" style="width:width;height:height;">
+                                    </form>
+                                @endif
+
                             </td>
                             <td>
                                 {!! $searchResult['snippet']['title'] !!}
@@ -56,7 +61,6 @@
                                             @include('shared.hidden_fields')
                                         </div>
                                     <button type="submit" class="btn btn-primary">Add Favourite</button>
-
                                 </form>
                             </td>
                         </tr>
