@@ -44,6 +44,11 @@ Route::post('/search', [
             'as' => 'favourite.create'
         ]);
 
+Route::get('/search/play', [
+            'uses' => 'SearchController@play',
+            'as' => 'search.play'
+        ]);
+
 //Route::post('/create', [
 //            'uses' => 'FavouritesController@store',
 //            'as' => 'favourite.create'
