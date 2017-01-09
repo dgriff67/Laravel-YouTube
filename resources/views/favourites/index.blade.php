@@ -13,7 +13,7 @@
                     </div>
                 @endif
                 @if ($favourites->isEmpty())
-                    <p> There are no favourites.</p>
+                    <p> There are no favourites @if ($tag == '') @else with tag: {{ $tag->name }} @endif.</p>
                 @else
                     <table class="table">
                         @foreach($favourites->sortByDesc('created_at') as $favourite)
