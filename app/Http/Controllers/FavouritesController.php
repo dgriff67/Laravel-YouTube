@@ -31,7 +31,7 @@ class FavouritesController extends Controller
         $user_id = Auth::id();
         //$favourites = Favourite::with('user')->findOrFail($id);
         //$favourites = Favourite::all();
-        $favourites = Favourite::where('user_id', $user_id)->get();
+        $favourites = Favourite::where('user_id', $user_id)->paginate(6);;
         foreach ($favourites as $favourite) {
             $favourite->tags = $favourite->tags()->get();
         }
@@ -147,6 +147,7 @@ class FavouritesController extends Controller
     public function destroy($id)
     {
         $favourite = Favourite::whereId($id)->firstOrFail();
+        $tags = $favourite->tags()->detach();
         $favourite->delete();
         return redirect('/favourites')->with('status', 'The favourite '.$id.' has been deleted!');
     }
