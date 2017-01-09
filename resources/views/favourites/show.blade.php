@@ -22,9 +22,16 @@
                     @endif
                 </div>
                 <div class="content">
-                    <h2 class="header">{!! $favourite->title !!}</h2>
-                    <h3 class="header">{!! $tag_string !!}</h3>
+                    <h2 class="header">{{ $favourite->title }}</h2>
+                    @if ($favourite->tags->isEmpty())
+                        <p>Use the edit button below to add tags or to change the title<p>
+                    @else
+                        @foreach($favourite->tags->sortBy('name') as $tag)
+                            <a href="{!! action('TagsController@show', $tag->id) !!}">{{ $tag->name }} </a>
+                        @endforeach
+                    @endif
                 </div>
+                <br>
                 <a href="{!! action('FavouritesController@edit', $favourite->id) !!}" class="btn btn-info">Edit</a>
                 <form method="post" action="{!! action('FavouritesController@destroy', $favourite->id) !!}" class="pull-left">
                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
