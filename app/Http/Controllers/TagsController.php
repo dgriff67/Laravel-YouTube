@@ -38,4 +38,12 @@ class TagsController extends Controller
         return view('tags.index', compact('tags'));
     }
 
+    public function show($id)
+    {
+        $user_id = Auth::id();
+        $tag = Tag::whereId($id)->firstOrFail();
+        $tag->favourites = $tag->favourites()->get();
+        return view('tag.show', compact('tag'));
+    }
+
 }
