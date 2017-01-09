@@ -32,20 +32,13 @@ class FavouritesController extends Controller
         //$favourites = Favourite::with('user')->findOrFail($id);
         //$favourites = Favourite::all();
         $favourites = Favourite::where('user_id', $user_id)->get();
-        $tags = Tag::where('user_id', $user_id)->get();
         foreach ($favourites as $favourite) {
-            $favourite->tag_string = '';
-            foreach ($tags as $tag) {
-                if ($tag->favourites()->where('favourites.id',$favourite->id)->count()>0) {
-                    if ($favourite->tag_string) {
-                        $favourite->tag_string .= '|' . $tag->name;
-                    } else {
-                        $favourite->tag_string .= $tag->name;
-                    }
-                }
-            }
+            $favourite->tags = $favourite->tags()->get();
         }
-        return view('favourites.index', compact('favourites'));
+        //Because this view is shared with the show action for the
+        //tag controller we set $tag to the empty simplexml_load_string
+        $tag = '';
+        return view('favourites.index', compact('favourites','tag'));
     }
 
     /**
