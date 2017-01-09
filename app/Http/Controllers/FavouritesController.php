@@ -121,7 +121,6 @@ class FavouritesController extends Controller
     {
         $favourite = Favourite::whereId($id)->firstOrFail();
         $favourite->tags()->detach();
-
         $tags_checked = $request->get('tag');
         if(is_array($tags_checked))
         {
@@ -130,7 +129,13 @@ class FavouritesController extends Controller
                 $favourite->tags()->attach($tag);
             }
         }
-
+        $newtag = $request->input('newtag');
+        if (!is_null($newtag)) {
+            $tag = new Tag();
+            $tag->name = $newtag;
+            $request->user()->tags()->save($tag);
+            $favourite->tags()->attach($tag);
+        }
         $favourite->title = $request->input('title');
         $favourite->update();
 
