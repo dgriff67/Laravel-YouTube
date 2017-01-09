@@ -31,7 +31,7 @@
                         </div>
                         <label for="title">New tag</label>
                         <div>
-                            <input type="text" class="form-control" placeholder="Enter new tag here or just choose from existing tags below" id="tag" name="tag" value="">
+                            <input type="text" class="form-control" placeholder="Enter new tag here or choose from tags below" id="newtag" name="newtag" value="">
                         </div>
 
                     </div>
