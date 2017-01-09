@@ -36,10 +36,10 @@
                     <p> There are no tags.</p>
                 @else
                     <table class="table">
-                        @foreach($tags as $tag)
+                        @foreach($tags->sortBy('name') as $tag)
                             <tr>
                                 <td>
-                                    {!! $tag->name !!}
+                                    <a href="{!! action('TagsController@show', $tag->id) !!}">{{ $tag->name }} </a>
                                 </td>
                             </tr>
                         @endforeach
