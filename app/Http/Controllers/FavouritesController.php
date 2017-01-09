@@ -79,18 +79,8 @@ class FavouritesController extends Controller
     {
         $user_id = Auth::id();
         $favourite = Favourite::whereId($id)->firstOrFail();
-        $tags = Tag::where('user_id', $user_id)->get();
-        $tag_string = '';
-        foreach ($tags as $tag) {
-            if ($tag->favourites()->where('favourites.id',$id)->count()>0) {
-                if ($tag_string) {
-                    $tag_string .= '|' . $tag->name;
-                } else {
-                    $tag_string .= $tag->name;
-                }
-            }
-        }
-        return view('favourites.show', ['favourite'=> $favourite , 'tag_string' => $tag_string]);
+        $tags = $favourite->tags()->get();
+        return view('favourites.show', compact('favourite','tags'));
     }
 
     /**
@@ -129,10 +119,9 @@ class FavouritesController extends Controller
                 $favourite->tags()->attach($tag);
             }
         }
-        $newtag = $request->input('newtag');
-        if (!is_null($newtag)) {
+        if (!empty($request->input('newtag'))) {
             $tag = new Tag();
-            $tag->name = $newtag;
+            $tag->name = $request->input('newtag');
             $request->user()->tags()->save($tag);
             $favourite->tags()->attach($tag);
         }
