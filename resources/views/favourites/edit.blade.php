@@ -30,7 +30,7 @@
                             <input type="hidden" class="form-control" id="videoid" name="videoid" value="{!! $favourite->videoid !!}">
                         </div>
                     </div>
-                    @foreach($tags as $tag)
+                    @foreach($tags->sortBy('name') as $tag)
                         <label class="checkbox-inline">
                             <input type="checkbox"
                             @if ($tag->checked)
