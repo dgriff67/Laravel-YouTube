@@ -42,8 +42,11 @@ class TagsController extends Controller
     {
         $user_id = Auth::id();
         $tag = Tag::whereId($id)->firstOrFail();
-        $tag->favourites = $tag->favourites()->get();
-        return view('tag.show', compact('tag'));
+        $favourites = $tag->favourites()->get();
+        foreach ($favourites as $favourite) {
+            $favourite->tags = $favourite->tags()->get();
+        }
+        return view('favourites.index', compact('favourites','tag'));
     }
 
 }
