@@ -35,6 +35,12 @@ class TagsController extends Controller
         $user_id = Auth::id();
         $tags = Tag::where('user_id', $user_id)
             ->get();
+        foreach ($tags as $tag) {
+            $tag->favourite = null;
+            if ($tag->favourites()) {
+                $tag->favourite = $tag->favourites()->orderByRaw('RAND()')->take(1)->get();
+            }
+        }
         return view('tags.index', compact('tags'));
     }
 
