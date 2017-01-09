@@ -64,6 +64,11 @@ Route::post('users/register', 'Auth\RegisterController@register');
 Route::get('/tags', 'TagsController@index');
 Route::post('/tags', 'TagsController@store');
 Route::get('/favourites/tag/{id}', 'TagsController@show');
+Route::post('/tag/{id?}/delete', [
+            'uses' => 'TagsController@destroy',
+            'as' => 'tag.delete'
+        ]);
+
 
 Route::group(['prefix' => 'api'], function(){
     Route::get('favourites', ['as' => 'favourites', function () {
