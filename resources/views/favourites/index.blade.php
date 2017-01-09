@@ -41,6 +41,13 @@
                     </table>
                 @endif
                 {{ $favourites->links() }}
+                @if ($tag == '')
+                @else
+                <form action="{{ route('tag.delete', $tag->id) }}" method="post">
+                    {{ csrf_field() }}
+                    <button type="submit" class="btn btn-danger">Delete Tag</button>
+                </form>
+                @endif
             </div>
     </div>
 
