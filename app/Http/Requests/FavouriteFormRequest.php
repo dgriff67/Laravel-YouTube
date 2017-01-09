@@ -26,6 +26,7 @@ class FavouriteFormRequest extends FormRequest
         return [
             'title' => 'required|min:3',
             'videoid'=> 'required|min:10',
+            'newtag' => 'min:3'
         ];
     }
 }
