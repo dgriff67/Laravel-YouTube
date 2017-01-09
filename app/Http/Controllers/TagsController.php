@@ -42,11 +42,18 @@ class TagsController extends Controller
     {
         $user_id = Auth::id();
         $tag = Tag::whereId($id)->firstOrFail();
-        $favourites = $tag->favourites()->get();
+        $favourites = $tag->favourites()->paginate(6);
         foreach ($favourites as $favourite) {
             $favourite->tags = $favourite->tags()->get();
         }
         return view('favourites.index', compact('favourites','tag'));
     }
 
+    public function destroy($id)
+    {
+        $tag = Tag::whereId($id)->firstOrFail();
+        $favourites = $tag->favourites()->detach();
+        $tag->delete();
+        return redirect('/tags')->with('status', 'The tag '.$id.' has been deleted!');
+    }
 }
