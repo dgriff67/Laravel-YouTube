@@ -40,6 +40,7 @@
                         @endforeach
                     </table>
                 @endif
+                {{ $favourites->links() }}
             </div>
     </div>
 
