@@ -29,6 +29,11 @@
                         <div>
                             <input type="hidden" class="form-control" id="videoid" name="videoid" value="{!! $favourite->videoid !!}">
                         </div>
+                        <label for="title">New tag</label>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Enter new tag here or just choose from existing tags below" id="tag" name="tag" value="">
+                        </div>
+
                     </div>
                     @foreach($tags->sortBy('name') as $tag)
                         <label class="checkbox-inline">
