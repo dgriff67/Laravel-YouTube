@@ -16,7 +16,7 @@
                     <p> There are no favourites.</p>
                 @else
                     <table class="table">
-                        @foreach($favourites as $favourite)
+                        @foreach($favourites->sortByDesc('created_at') as $favourite)
                             <tr>
                                 <td>
                                     @if ($favourite->kind == 'youtube#channel')
@@ -31,7 +31,7 @@
                                     @else
                                         <a href="{!! action('FavouritesController@show', $favourite->id) !!}">{{ $favourite->title }} </a>
                                         <br>
-                                            @foreach($favourite->tags as $tag)
+                                            @foreach($favourite->tags->sortBy('name') as $tag)
                                                 <a href="{!! action('TagsController@show', $tag->id) !!}">{{ $tag->name }} </a>
                                             @endforeach
                                     @endif
