@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('title', 'View all Favourites')
+@section('title', 'View Favourites ')
 @section('content')
 
     <div class="container col-md-8">
             <div class="well well bs-component">
                 <div>
-                    <h2> Favourites </h2>
+                    <h2> Favourites @if ($tag == '') - All @else - {{ $tag->name }} @endif </h2>
                 </div>
                 @if (session('status'))
                     <div class="alert alert-success">
@@ -20,16 +20,20 @@
                             <tr>
                                 <td>
                                     @if ($favourite->kind == 'youtube#channel')
-                                        <a href="https://www.youtube.com/channel/{!! $favourite->videoid !!}" target='_blank'><img src="{!! $favourite->imageUrl !!}" alt="{!! $favourite->title !!}" style="width:width;height:height;"></a>
+                                        <a href="https://www.youtube.com/channel/{!! $favourite->videoid !!}" target='_blank'><img src="{!! $favourite->imageUrl !!}" alt="{{ $favourite->title }}" style="width:width;height:height;"></a>
                                     @else
-                                        <a href="{!! action('FavouritesController@show', $favourite->id) !!}"><img src="{!! $favourite->imageUrl !!}" alt="{!! $favourite->title !!}" style="width:width;height:height;"></a>
+                                        <a href="{!! action('FavouritesController@show', $favourite->id) !!}"><img src="{!! $favourite->imageUrl !!}" alt="{{ $favourite->title }}" style="width:width;height:height;"></a>
                                     @endif
                                 </td>
                                 <td>
                                     @if ($favourite->kind == 'youtube#channel')
-                                        <a href="https://www.youtube.com/channel/{!! $favourite->videoid !!}" target='_blank'>{!! $favourite->title !!} <br> {!!$favourite->tag_string !!}</a>
+                                        <a href="https://www.youtube.com/channel/{!! $favourite->videoid !!}" target='_blank'>{{ $favourite->title }} <br> </a>
                                     @else
-                                        <a href="{!! action('FavouritesController@show', $favourite->id) !!}">{!! $favourite->title !!} <br>{!!$favourite->tag_string !!} </a>
+                                        <a href="{!! action('FavouritesController@show', $favourite->id) !!}">{{ $favourite->title }} </a>
+                                        <br>
+                                            @foreach($favourite->tags as $tag)
+                                                <a href="{!! action('TagsController@show', $tag->id) !!}">{{ $tag->name }} </a>
+                                            @endforeach
                                     @endif
                                 </td>
                             </tr>
